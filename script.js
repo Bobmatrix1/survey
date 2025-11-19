@@ -48,6 +48,9 @@ elements.forEach(el => observer.observe(el));
 document.getElementById("surveyForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // Show loader
+    document.getElementById("loader").style.display = "flex";
+
     // IMPORTANT: For security, store these in environment variables and load them
     // via a build process or server-side script. Directly exposing them in client-side
     // JavaScript is not recommended for production.
@@ -60,6 +63,7 @@ document.getElementById("surveyForm").addEventListener("submit", async (e) => {
     if (botToken === "YOUR_BOT_TOKEN" || chatId === "YOUR_CHAT_ID") {
         console.error("Telegram bot token or chat ID not configured. Please update script.js or environment variables.");
         alert("Survey submission is not configured. Please contact the administrator.");
+        document.getElementById("loader").style.display = "none"; // HIDE LOADER ON ERROR
         return;
     }
 
@@ -70,18 +74,26 @@ document.getElementById("surveyForm").addEventListener("submit", async (e) => {
         message += `*${key}:* ${value}\n`;
     });
 
-    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-            parse_mode: "Markdown"
-        })
-    });
+    try {
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+                parse_mode: "Markdown"
+            })
+        });
+        // Hide loader after successful fetch
+        document.getElementById("loader").style.display = "none";
 
-    document.querySelector(".survey-container").style.display = "none";
-    document.getElementById("successPage").style.display = "flex";
+        document.querySelector(".survey-container").style.display = "none";
+        document.getElementById("successPage").style.display = "flex";
+    } catch (error) {
+        console.error("Error sending survey data:", error);
+        alert("There was an error submitting your survey. Please try again.");
+        document.getElementById("loader").style.display = "none"; // HIDE LOADER ON ERROR
+    }
 });
 
 /* CLOSE SUCCESS PAGE */
