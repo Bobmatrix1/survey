@@ -1,8 +1,12 @@
 /* LOADER — Waits until all assets finish loading */
+const loaderText = document.getElementById("loaderText"); // Cache loader text element
+
 window.addEventListener("load", () => {
     document.getElementById("loader").style.display = "none";
     document.querySelector(".survey-container").style.display = "block";
     document.getElementById("successPage").style.display = "none";
+    // Ensure initial text is correct
+    loaderText.innerText = "Loading survey…";
 });
 
 /* PROGRESS BAR */
@@ -48,6 +52,9 @@ elements.forEach(el => observer.observe(el));
 document.getElementById("surveyForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // Change loader text for submission
+    loaderText.innerText = "Submitting form…";
+
     // Show loader
     document.getElementById("loader").style.display = "flex";
 
@@ -64,6 +71,7 @@ document.getElementById("surveyForm").addEventListener("submit", async (e) => {
         console.error("Telegram bot token or chat ID not configured. Please update script.js or environment variables.");
         alert("Survey submission is not configured. Please contact the administrator.");
         document.getElementById("loader").style.display = "none"; // HIDE LOADER ON ERROR
+        loaderText.innerText = "Loading survey…"; // Reset text on error
         return;
     }
 
@@ -86,6 +94,7 @@ document.getElementById("surveyForm").addEventListener("submit", async (e) => {
         });
         // Hide loader after successful fetch
         document.getElementById("loader").style.display = "none";
+        loaderText.innerText = "Loading survey…"; // Reset text after successful submission
 
         document.querySelector(".survey-container").style.display = "none";
         document.getElementById("successPage").style.display = "flex";
@@ -93,6 +102,7 @@ document.getElementById("surveyForm").addEventListener("submit", async (e) => {
         console.error("Error sending survey data:", error);
         alert("There was an error submitting your survey. Please try again.");
         document.getElementById("loader").style.display = "none"; // HIDE LOADER ON ERROR
+        loaderText.innerText = "Loading survey…"; // Reset text on error
     }
 });
 
@@ -103,4 +113,5 @@ document.getElementById("closeSuccess").addEventListener("click", () => {
     document.getElementById("surveyForm").reset();
     answered = 0;
     progressBar.style.width = "0%";
+    loaderText.innerText = "Loading survey…"; // Reset text when form is reset
 });
