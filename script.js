@@ -53,8 +53,8 @@ document.getElementById("surveyForm").addEventListener("submit", async (e) => {
     // JavaScript is not recommended for production.
     // For local development or static deployment without a build step,
     // you would manually replace these placeholders:
-    const botToken = "YOUR_BOT_TOKEN"; // Replace with your actual bot token
-    const chatId = "YOUR_CHAT_ID";   // Replace with your actual chat ID
+    const botToken = "8381639037:AAHXpqGjD1h1RTbjDBX4kWYdW3gjX-wEY_Y"; // Replace with your actual bot token
+    const chatId = "7081768586";   // Replace with your actual chat ID
 
     // Ensure tokens are set before proceeding
     if (botToken === "YOUR_BOT_TOKEN" || chatId === "YOUR_CHAT_ID") {
