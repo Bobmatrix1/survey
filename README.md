@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/logo.png" alt="Survey Logo" width="150"/>
+  <img src="assets/logo.jpeg" alt="Survey Logo" width="150"/>
   <h1>Student Entrepreneurship Survey</h1>
   <p>A web-based survey to gather insights into student interest in entrepreneurship and the impact of financial support.</p>
   
@@ -36,7 +36,7 @@ To get this project running locally, follow these simple steps:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [text](https://github.com/Bobmatrix1/survey)
+    git clone https://github.com/Bobmatrix1/survey
     cd your-repository-name
     ```
 
