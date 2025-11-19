@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Entrepreneurship Survey</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/favicon.jpeg">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <p>Loading survey…</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <!-- Success Page -->
+    <div id="successPage" style="display: none;">
+        <div class="success-box">
+            <h1>🎉 Thank You!</h1>
+            <p>Your response has been successfully submitted.</p>
+            <p>We appreciate your time 🙌</p>
+            <button id="closeSuccess" class="close-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- MAIN SURVEY -->
+    <div class="survey-container" style="display: none;">
+
+        <!-- Logo -->
+        <div class="logo-box" data-animate>
+            <img src="assets/logo.jpeg" alt="Survey Logo">
+        </div>
+
+        <h2 data-animate>📋 Student Interest & Entrepreneurship Impact Survey</h2>
+        <p class="subtitle" data-animate>Your responses help improve student entrepreneurship support.</p>
+
+        <form id="surveyForm">
+
+            <!-- SECTION A -->
+            <div class="section" data-animate>
+                <h3>Section A: Interest in Entrepreneurship</h3>
+
+                <label>1. How interested are you in starting a business as a student?</label>
+                <div class="options">
+                    <input type="checkbox" name="interest" value="Very interested"> Very interested<br>
+                    <input type="checkbox" name="interest" value="Somewhat interested"> Somewhat interested<br>
+                    <input type="checkbox" name="interest" value="Not sure"> Not sure<br>
+                    <input type="checkbox" name="interest" value="Not interested"> Not interested<br>
+                </div>
+
+                <label>2. What motivates you the most? (Select all that apply)</label>
+                <div class="options">
+                    <input type="checkbox" name="motivation" value="Financial independence"> Financial independence<br>
+                    <input type="checkbox" name="motivation" value="Solving a problem"> Solving a problem<br>
+                    <input type="checkbox" name="motivation" value="Passion"> Passion for entrepreneurship<br>
+                    <input type="checkbox" name="motivation" value="Exposure"> Exposure & experience<br>
+                    <input type="checkbox" name="motivation" value="Other"> Other:
+                    <input type="text" name="motivation_other">
+                </div>
+
+                <label>3. Do you currently have a business?</label>
+                <div class="options">
+                    <input type="checkbox" name="has_business" value="Yes"> Yes<br>
+                    <input type="checkbox" name="has_business" value="No"> No<br>
+                    <input type="checkbox" name="has_business" value="Still thinking"> Still thinking<br>
+                </div>
+
+                <label>4. If yes, describe your business idea:</label>
+                <textarea name="business_idea"></textarea>
+            </div>
+
+            <!-- SECTION B -->
+            <div class="section" data-animate>
+                <h3>Section B: Readiness & Challenges</h3>
+
+                <label>5. Have you ever tried starting a business?</label>
+                <div class="options">
+                    <input type="checkbox" name="tried_before" value="Active"> Yes, active<br>
+                    <input type="checkbox" name="tried_before" value="Stopped"> Yes, but stopped<br>
+                    <input type="checkbox" name="tried_before" value="No"> No<br>
+                </div>
+
+                <label>6. Your biggest challenge?</label>
+                <div class="options">
+                    <input type="checkbox" name="challenge" value="Capital"> Lack of capital<br>
+                    <input type="checkbox" name="challenge" value="Mentorship"> Lack of mentorship<br>
+                    <input type="checkbox" name="challenge" value="Knowledge"> Limited knowledge<br>
+                    <input type="checkbox" name="challenge" value="Fear"> Fear of failure<br>
+                    <input type="checkbox" name="challenge" value="Time"> No time due to school<br>
+                    <input type="checkbox" name="challenge" value="Other"> Other:
+                    <input type="text" name="challenge_other">
+                </div>
+
+                <label>7. Do students have support?</label>
+                <div class="options">
+                    <input type="checkbox" name="support" value="Yes"> Yes<br>
+                    <input type="checkbox" name="support" value="Somewhat"> Somewhat<br>
+                    <input type="checkbox" name="support" value="Not really"> Not really<br>
+                    <input type="checkbox" name="support" value="No"> No<br>
+                </div>
+            </div>
+
+            <!-- SECTION C -->
+            <div class="section" data-animate>
+                <h3>Section C: Financial Support Impact</h3>
+
+                <label>8. If given ₦100,000 how would you use it?</label>
+                <div class="options">
+                    <input type="checkbox" name="use_100k" value="Start business"> Start business<br>
+                    <input type="checkbox" name="use_100k" value="Expand business"> Expand business<br>
+                    <input type="checkbox" name="use_100k" value="Savings"> Savings<br>
+                    <input type="checkbox" name="use_100k" value="Needs"> Personal needs<br>
+                    <input type="checkbox" name="use_100k" value="Other"> Other:
+                    <input type="text" name="use_100k_other">
+                </div>
+
+                <label>9. Is ₦50,000 enough?</label>
+                <div class="options">
+                    <input type="checkbox" name="enough_50k" value="Yes"> Yes<br>
+                    <input type="checkbox" name="enough_50k" value="Maybe"> Maybe<br>
+                    <input type="checkbox" name="enough_50k" value="No"> No<br>
+                </div>
+
+                <label>10. If given ₦30,000 what would you do?</label>
+                <div class="options">
+                    <input type="checkbox" name="use_30k" value="Materials"> Buy materials<br>
+                    <input type="checkbox" name="use_30k" value="Training"> Pay for training<br>
+                    <input type="checkbox" name="use_30k" value="Transport"> Transport<br>
+                    <input type="checkbox" name="use_30k" value="Save"> Save<br>
+                    <input type="checkbox" name="use_30k" value="Other"> Other:
+                    <input type="text" name="use_30k_other">
+                </div>
+
+                <label>11. Can these amounts create impact?</label>
+                <div class="options">
+                    <input type="checkbox" name="impact" value="Yes"> Yes<br>
+                    <input type="checkbox" name="impact" value="Somewhat"> To some extent<br>
+                    <input type="checkbox" name="impact" value="No"> No<br>
+                </div>
+            </div>
+
+            <!-- SECTION D -->
+            <div class="section" data-animate>
+                <h3>Section D: Support & Expectations</h3>
+
+                <label>12. What support helps most?</label>
+                <div class="options">
+                    <input type="checkbox" name="support_type" value="Mentorship"> Mentorship<br>
+                    <input type="checkbox" name="support_type" value="Training"> Training<br>
+                    <input type="checkbox" name="support_type" value="Resources"> Resources<br>
+                    <input type="checkbox" name="support_type" value="Networking"> Networking<br>
+                    <input type="checkbox" name="support_type" value="Other"> Other:
+                    <input type="text" name="support_other">
+                </div>
+
+                <label>13. What business are you interested in?</label>
+                <div class="options">
+                    <input type="checkbox" name="business_type" value="Fashion"> Fashion<br>
+                    <input type="checkbox" name="business_type" value="Tech"> Tech<br>
+                    <input type="checkbox" name="business_type" value="Food"> Food<br>
+                    <input type="checkbox" name="business_type" value="Digital"> Digital<br>
+                    <input type="checkbox" name="business_type" value="Retail"> Retail<br>
+                    <input type="checkbox" name="business_type" value="Agriculture"> Agriculture<br>
+                    <input type="checkbox" name="business_type" value="Other"> Other:
+                    <input type="text" name="business_other">
+                </div>
+
+                <label>14. Would you join a pitch competition?</label>
+                <div class="options">
+                    <input type="checkbox" name="competition" value="Yes"> Yes<br>
+                    <input type="checkbox" name="competition" value="Maybe"> Maybe<br>
+                    <input type="checkbox" name="competition" value="No"> No<br>
+                </div>
+
+                <label>15. Suggestions:</label>
+                <textarea name="suggestions"></textarea>
+
+                <label>Your email:</label>
+                <input type="email" name="email">
+
+                <label>Your WhatsApp number:</label>
+                <input type="text" name="whatsapp">
+            </div>
+
+            <button type="submit" class="submit-btn" data-animate>Submit Survey</button>
+            <a href="YOUR_WHATSAPP_LINK" target="_blank" class="whatsapp-btn" data-animate>Join WhatsApp Group</a>
+
+        </form>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
